@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>السلة</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+<h2>النبراس</h2>
+<a href="index.html">الرئيسية</a>
+<a href="menu.html">المنيو</a>
+<a href="cart.html" class="active">السلة</a>
+<a href="about.html">من نحن</a>
+<a href="booking.html">الحجز</a>
+<a href="contact.html">تواصل</a>
+</header>
+
+<div class="page">
+<h1>سلة الطلبات</h1>
+<div id="cart-items"></div>
+<h2 id="total" style="color:orange; margin-top:30px;"></h2>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cartDiv = document.getElementById('cart-items');
+let total = 0;
+
+if(cart.length == 0){
+    cartDiv.innerHTML = "<h2>السلة فاضية 😢</h2><a href='menu.html' class='btn-main'>ارجع للمنيو</a>";
+} else {
+    cart.forEach(item => {
+        total += item.price * item.qty;
+        cartDiv.innerHTML += `
+        <div class="box" style="width:90%; display:flex; gap:15px; text-align:right;">
+            <img src="${item.image}" style="width:100px; height:100px;">
+            <div>
+                <h3>${item.name}</h3>
+                <p>الكمية: ${item.qty}</p>
+                <p>السعر: ${item.price * item.qty} جنيه</p>
+            </div>
+        </div>
+        `;
+    });
+    document.getElementById('total').innerText = "الاجمالي: " + total + " جنيه";
+}
+</script>
+
+</body>
+</html>

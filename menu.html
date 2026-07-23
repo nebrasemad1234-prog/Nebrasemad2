@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>المنيو</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+<h2>النبراس</h2>
+<a href="index.html">الرئيسية</a>
+<a href="menu.html" class="active">المنيو</a>
+<a href="cart.html">السلة</a>
+<a href="about.html">من نحن</a>
+<a href="booking.html">الحجز</a>
+<a href="contact.html">تواصل</a>
+</header>
+
+<div class="page">
+<h1>المنيو</h1>
+
+<div class="box">
+<img src="Picture/Image2/burger.jpg">
+<h3>برجر النبراس</h3>
+<p>برجر لحم مشوي</p>
+<div class="price">7000 جنيه</div>
+<button class="btn" onclick="addToCart('برجر النبراس', 7000, 'Picture/Image2/burger.jpg')">اضافة الي السلة</button>
+</div>
+
+<div class="box">
+<img src="Picture/Image2/Hummus.jpg">
+<h3>طبق حمص</h3>
+<p>حمص بالطحينة</p>
+<div class="price">4000 جنيه</div>
+<button class="btn" onclick="addToCart('طبق حمص', 4000, 'Picture/Image2/Hummus.jpg')">اضافة الي السلة</button>
+</div>
+
+<div class="box">
+<img src="Picture/Image2/kebab.jpg">
+<h3>كباب مشوي</h3>
+<p>كباب مع الرز</p>
+<div class="price">11000 جنيه</div>
+<button class="btn" onclick="addToCart('كباب مشوي', 11000, 'Picture/Image2/kebab.jpg')">اضافة الي السلة</button>
+</div>
+
+<div class="box">
+<img src="Picture/Image2/omali.jpg">
+<h3>ام علي</h3>
+<p>حلى ام علي</p>
+<div class="price">5000 جنيه</div>
+<button class="btn" onclick="addToCart('ام علي', 5000, 'Picture/Image2/omali.jpg')">اضافة الي السلة</button>
+</div>
+
+<div class="box">
+<img src="Picture/Image2/Shawrma.jpg">
+<h3>شاورما لحم</h3>
+<p>شاورما في خبز الصاج</p>
+<div class="price">6500 جنيه</div>
+<button class="btn" onclick="addToCart('شاورما لحم', 6500, 'Picture/Image2/Shawrma.jpg')">اضافة الي السلة</button>
+</div>
+
+<div class="box">
+<img src="Picture/Image2/Shish.jpg">
+<h3>شيش طاووق</h3>
+<p>شيش مع الثومية</p>
+<div class="price">9000 جنيه</div>
+<button class="btn" onclick="addToCart('شيش طاووق', 9000, 'Picture/Image2/Shish.jpg')">اضافة الي السلة</button>
+</div>
+
+</div>
+
+<script>
+function addToCart(name, price, image){
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // جيب السلة القديمة
+    let item = cart.find(i => i.name === name); // شوف هل الصنف موجود
+    
+    if(item){
+        item.qty += 1; // لو موجود زيد الكمية
+    } else {
+        cart.push({name: name, price: price, image: image, qty: 1}); // لو جديد ضيفو
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart)); // خزن السلة
+    alert(name + " ✅ تمت الاضافة للسلة");
+    window.location.href = 'cart.html'; // وديك للسلة طوالي
+}
+</script>
+
+</body>
+</html>
